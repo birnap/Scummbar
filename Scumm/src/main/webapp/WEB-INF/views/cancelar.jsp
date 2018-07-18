@@ -17,7 +17,7 @@
 </script>
 
 <div class="body">
-	<form:form action="reservado" method="post">
+	<form:form action="cancelado" method="post">
 		<div>
 			<label for="restaurante">Restaurante</label>
 			<form:select path="restauranteId" items="${command.restaurantes}"
@@ -36,15 +36,11 @@
 		</div>
 
 		<div>
-			<label for="personas">Personas</label>
-			<form:select path="personas" htmlEscape="true">
-				<c:forEach begin="1" end="10" var="count">
-					<form:option value="${count}" />
-				</c:forEach>
-			</form:select>
+			<label for="localizador">Localizador</label>
+			<form:input path="localizador" type="text"/>
 		</div>
 		<div>
-			<button type="submit" value="Reservar">Reservar</button>
+			<button type="submit" value="Cancelar">Cancelar</button>
 		</div>
 	</form:form>
 	<p>

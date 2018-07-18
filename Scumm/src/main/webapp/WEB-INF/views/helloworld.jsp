@@ -9,5 +9,8 @@
 </head>
 <body>
 	<h1>Hello: ${name}</h1>
+	<p><a href="${pageContext.request.contextPath}/restaurantes">Ver restaurantes</a></p>
+	<p><a href="${pageContext.request.contextPath}/reservar">Hacer reserva</a></p>
+	<p><a href="${pageContext.request.contextPath}/cancelar">Cancelar reserva</a></p>
 </body>
 </html>

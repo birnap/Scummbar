@@ -1,24 +1,29 @@
 package com.sprhib.init;
 
+import java.util.Locale;
 import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesView;
 
 @Configuration
 @ComponentScan("com.sprhib")
@@ -84,4 +89,30 @@ public class WebAppConfig {
 		resolver.setViewClass(JstlView.class);
 		return resolver;
 	}
+	
+	@Bean
+	public MessageSource messageSource() {
+		final ReloadableResourceBundleMessageSource ret = new ReloadableResourceBundleMessageSource();
+		ret.setBasename("classpath:messages/messages");
+		ret.setDefaultEncoding("ISO-8859-1");
+		ret.setFallbackToSystemLocale(false);
+		return ret;
+	}
+	
+	@Bean
+	public LocaleResolver localeResolver() {
+		final CookieLocaleResolver ret = new CookieLocaleResolver();
+		ret.setDefaultLocale(new Locale("es"));
+		ret.setCookieName("ScummbarCookie");
+		ret.setCookieMaxAge(3600);
+		return ret;
+	}
+	
+//	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		final LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+		interceptor.setParamName("idioma");
+		registry.addInterceptor(interceptor);
+	}
+	
 }

@@ -4,12 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
-		<title>Reserva realizada</title>
+		<title>Reserva cancelada</title>
 	</head>
 	<body>
 		<div class="body">
 			<div class="alert alert-block alert-success">
-				Reserva realizada ${localizador}
+				Reserva cancelada ${cancelado}
 			</div>
 		</div>
 		<p>

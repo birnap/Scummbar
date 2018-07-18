@@ -6,50 +6,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sprhib.model.dto.ReservarDto;
+import com.sprhib.model.dto.CancelarDto;
 import com.sprhib.model.entities.Reserva;
 import com.sprhib.model.entities.Restaurante;
 import com.sprhib.model.entities.Turno;
 import com.sprhib.model.negocio.INegocioRestaurant;
 
 @Controller
-public class ControladorReservas {
+public class ControladorCancelaciones {
 
 	@Autowired
 	INegocioRestaurant negocioRestaurante;
 
-	@RequestMapping(value = "/reservar", method = RequestMethod.GET)
+	@RequestMapping(value = "/cancelar", method = RequestMethod.GET)
 	public ModelAndView verFormulario() {
-		ModelAndView model = new ModelAndView("reservar");
-		
-		ReservarDto dto = new ReservarDto();
+		ModelAndView model = new ModelAndView("cancelar");
+
+		CancelarDto dto = new CancelarDto();
 		dto.setRestaurantes(negocioRestaurante.getRestaurantes());
 		dto.setTurnos(negocioRestaurante.getTurnos());
 		model.addObject("command", dto);
 		return model;
 	}
 
-	@RequestMapping(value = "/reservado", method = RequestMethod.POST)
-	public ModelAndView submitFormulario(ReservarDto dto) {
-		ModelAndView model = new ModelAndView("reservado");
-
+	@RequestMapping(value = "/cancelado", method = RequestMethod.POST)
+	public ModelAndView submitFormulario(CancelarDto dto) {
+		ModelAndView model = new ModelAndView("cancelado");
 		Reserva reserva = new Reserva();
 		Restaurante restaurante = new Restaurante();
-		
-		reserva.setDia(dto.getDia());
-		reserva.setPersonas(dto.getPersonas());
 		Turno turno = new Turno();
+
+		reserva.setDia(dto.getDia());
 		turno.setId(dto.getTurnoId());
 		reserva.setTurno(turno);
+		reserva.setLocalizador(dto.getLocalizador());
 		restaurante.setId(dto.getRestauranteId());
-		boolean result=negocioRestaurante.reservar(restaurante, reserva);
-		
-		if(result) {
-			model.addObject("localizador", reserva.getLocalizador());
-		}else {
-			model.addObject("localizador", "Localizador no encontrado.");
+
+		boolean result = negocioRestaurante.cancelarReserva(restaurante, reserva);
+		if (result) {
+			model.addObject("cancelado", reserva.getLocalizador());
+		} else {
+			model.addObject("cancelado");
 		}
 		return model;
 	}
-
 }

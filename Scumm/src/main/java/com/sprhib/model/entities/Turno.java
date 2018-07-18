@@ -12,9 +12,9 @@ import javax.persistence.Table;
 public class Turno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id", unique=true, nullable=false)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
-	@Column(name="descripcion", nullable=false, length=500)
+	@Column(name = "descripcion", nullable = false, length = 500)
 	private String descripcion;
 
 	public Long getId() {

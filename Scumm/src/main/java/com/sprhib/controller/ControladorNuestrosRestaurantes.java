@@ -19,10 +19,10 @@ public class ControladorNuestrosRestaurantes {
 	@RequestMapping(value = "/restaurantes", method = RequestMethod.GET)
 	public ModelAndView allRestaurantes() {
 		ModelAndView model = new ModelAndView("restaurantes");
-		
+
 		List<Restaurante> listaRestaurantes = negocioRestaurante.getRestaurantes();
 		model.addObject("listaRestaurantes", listaRestaurantes);
-		
+
 		return model;
 	}
 }

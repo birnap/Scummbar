@@ -32,8 +32,8 @@ public class Reserva {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Long setId(Long id) {
+		return this.id = id;
 	}
 
 	public Date getDia() {
