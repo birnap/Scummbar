@@ -39,11 +39,11 @@ public class ReservaDAOImpl implements IReservaDAO {
 		return reserva;
 	}
 
-	public void deleteReserva(Long id) {
-		Reserva reserva = getReserva(id);
-		if (reserva != null)
-			getCurrentSession().delete(reserva);
-	}
+//	public void deleteReserva(Long id) {
+//		Reserva reserva = getReserva(id);
+//		if (reserva != null)
+//			getCurrentSession().delete(reserva);
+//	}
 
 	@SuppressWarnings("unchecked")
 	public List<Reserva> getReserva() {
@@ -51,9 +51,11 @@ public class ReservaDAOImpl implements IReservaDAO {
 	}
 
 	public void deleteReserva(Reserva reserva) {
-		Query query = getCurrentSession().createQuery("delete Reserva where localizador = :localizador");
-		query.setParameter("localizador", reserva.getLocalizador());
-		query.executeUpdate();
+		if (reserva != null) {
+			Query query = getCurrentSession().createQuery("delete Reserva where localizador = :localizador");
+			query.setParameter("localizador", reserva.getLocalizador());
+			query.executeUpdate();
+		}
 	}
 
 }

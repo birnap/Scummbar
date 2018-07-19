@@ -1,7 +1,6 @@
 package com.sprhib.model.negocio.impl;
 
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,6 +10,7 @@ import com.sprhib.dao.IMesaDAO;
 import com.sprhib.dao.IReservaDAO;
 import com.sprhib.dao.IRestauranteDAO;
 import com.sprhib.dao.ITurnoDAO;
+import com.sprhib.datos.horas.impl.CrearIdHoraActualImpl;
 import com.sprhib.model.entities.Mesa;
 import com.sprhib.model.entities.Reserva;
 import com.sprhib.model.entities.Restaurante;
@@ -96,11 +96,10 @@ public class NegocioRestauranteImpl implements INegocioRestaurant {
 	}
 
 	public Boolean reservar(final Restaurante restaurante, final Reserva reserva) {
-		Random random = new Random();
-		String localizador = "" + random.nextInt(1000);
+		CrearIdHoraActualImpl crearId = new CrearIdHoraActualImpl();
 
 		if (reserva != null) {
-			reserva.setLocalizador(localizador);
+			reserva.setLocalizador(crearId.obtenerHora());
 			reservaDAO.addReserva(reserva);
 			return true;
 		} else {

@@ -1,19 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
-		<title>Reserva cancelada</title>
+		<title><spring:message code="cancelada.titulo"/></title>
 	</head>
 	<body>
 		<div class="body">
+		<h2><spring:message code="cancelada.titulo"/></h2>
 			<div class="alert alert-block alert-success">
-				Reserva cancelada ${cancelado}
+				<c:choose>
+					<c:when test="${cancelado}"><spring:message code="cancelada.titulo"/> ${cancelado}</c:when>
+					<c:otherwise><spring:message code="cancelada.localizador.incorrecto"/> ${cancelado}</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<p>
-			<a href="${pageContext.request.contextPath}/hello">Home page</a>
+			<a href="${pageContext.request.contextPath}/"><spring:message code="menu.volver"/></a>
 		</p>
 	</body>
 </html>

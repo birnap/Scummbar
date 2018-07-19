@@ -26,7 +26,7 @@ public class TeamController {
 		modelAndView.addObject("team", new Team());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public ModelAndView addingTeam(@ModelAttribute Team team) {
 		

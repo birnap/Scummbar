@@ -9,8 +9,8 @@
 </head>
 <body>
 	<h1>Hello: ${name}</h1>
-	<p><a href="${pageContext.request.contextPath}/restaurantes">Ver restaurantes</a></p>
-	<p><a href="${pageContext.request.contextPath}/reservar">Hacer reserva</a></p>
-	<p><a href="${pageContext.request.contextPath}/cancelar">Cancelar reserva</a></p>
+	<p><a href="${pageContext.request.contextPath}/restaurantes"><spring:message code="menu.restaurantes"/></a></p>
+	<p><a href="${pageContext.request.contextPath}/reservar"><spring:message code="menu.reservar"/></a></p>
+	<p><a href="${pageContext.request.contextPath}/cancelar"><spring:message code="menu.cancelar"/></a></p>
 </body>
 </html>
