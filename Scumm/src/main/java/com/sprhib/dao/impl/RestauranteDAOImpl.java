@@ -45,11 +45,6 @@ public class RestauranteDAOImpl implements IRestauranteDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Restaurante> getRestaurante() {
-		//select * from reserva where localizador = 1224;
 		return getCurrentSession().createQuery("from Restaurante").list();
 	}
-	
-	//crear metodo para coger los datos del query con el hql
-	
-	
 }

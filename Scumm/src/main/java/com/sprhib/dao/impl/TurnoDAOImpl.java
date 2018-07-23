@@ -45,5 +45,9 @@ public class TurnoDAOImpl implements ITurnoDAO {
 	public List<Turno> getTurno() {
 		return getCurrentSession().createQuery("from Turno").list();
 	}
+	
+	public void listaTurnos() {
+		
+	}
 
 }

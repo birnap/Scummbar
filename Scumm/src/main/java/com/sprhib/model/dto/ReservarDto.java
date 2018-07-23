@@ -3,18 +3,37 @@ package com.sprhib.model.dto;
 import java.util.Date;
 import java.util.List;
 
+import com.sprhib.model.entities.Mesa;
 import com.sprhib.model.entities.Restaurante;
 import com.sprhib.model.entities.Turno;
 
 public class ReservarDto {
 	private List<Restaurante> restaurantes;
 	private List<Turno> turnos;
+	private List<Mesa> mesas;
 
 	private Long restauranteId;
 	private Date dia;
 	private Long turnoId;
 	private Integer personas;
+	private Long mesaId;
 
+	public Long getMesaId() {
+		return mesaId;
+	}
+
+	public void setMesaId(Long mesaId) {
+		this.mesaId = mesaId;
+	}
+
+	public List<Mesa> getMesas() {
+		return mesas;
+	}
+
+	public void setMesas(List<Mesa> mesas) {
+		this.mesas = mesas;
+	}
+	
 	public List<Restaurante> getRestaurantes() {
 		return restaurantes;
 	}

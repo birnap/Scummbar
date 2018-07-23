@@ -10,7 +10,17 @@
 	<body>
 		<div class="body">
 			<div class="alert alert-block alert-success">
-				<spring:message code="reservado.titulo"/> ${localizador}
+				<c:choose>
+					<c:when test="${estado}">
+						<spring:message code="reservado.titulo"/> ${localizador}<br/>
+						<spring:message code="reservar.dia"/> ${dia}<br/>
+						<spring:message code="reservar.personas"/> ${personas} <br/>
+					</c:when>
+					<c:otherwise>
+						<spring:message code="cancelada.localizador.incorrecto" /><br/>
+					</c:otherwise>
+				</c:choose>
+				
 			</div>
 		</div>
 		<p>

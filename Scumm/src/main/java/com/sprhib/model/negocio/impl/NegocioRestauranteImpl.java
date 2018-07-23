@@ -10,7 +10,7 @@ import com.sprhib.dao.IMesaDAO;
 import com.sprhib.dao.IReservaDAO;
 import com.sprhib.dao.IRestauranteDAO;
 import com.sprhib.dao.ITurnoDAO;
-import com.sprhib.datos.horas.impl.CrearIdHoraActualImpl;
+import com.sprhib.formato.horas.impl.CrearIdHoraActualImpl;
 import com.sprhib.model.entities.Mesa;
 import com.sprhib.model.entities.Reserva;
 import com.sprhib.model.entities.Restaurante;
@@ -95,11 +95,28 @@ public class NegocioRestauranteImpl implements INegocioRestaurant {
 		return mesaDAO.getMesa();
 	}
 
-	public Boolean reservar(final Restaurante restaurante, final Reserva reserva) {
+	public Boolean reservar(Restaurante restaurante, final Reserva reserva) {
 		CrearIdHoraActualImpl crearId = new CrearIdHoraActualImpl();
+		Mesa mesa = new Mesa();
+		reserva.setLocalizador(crearId.obtenerHora());
+		
+		mesa.setId(crearId.obtenerIdentificadorMesa());
+		reserva.setMesa(mesa);
+		
+//		List<Reserva> lista = reservaDAO.comprobarDiaDeReserva(restaurante.getId(), reserva.getDia());
+		
+//		restaurante = restauranteDAO.getRestaurante(restaurante.getId());
+		
+		
+//		List<Mesa> mesas = restaurante.getMesas().stream().filter(j -> isTableFreeOn(j, reservas, personas, turno))
+//				.sorted((o1, o2) -> o1.getCapacidad().compareTo(o2.getCapacidad())).collect(Collectors.toList());
 
+		// Stream stream = lista.stream();
+		// .flatMap(Array::stream);
+
+		// https://www.oracle.com/technetwork/es/articles/java/expresiones-lambda-api-stream-java-2737544-esa.html
+		// disponibles.stream().filter <--- algo asi, es un filtro.
 		if (reserva != null) {
-			reserva.setLocalizador(crearId.obtenerHora());
 			reservaDAO.addReserva(reserva);
 			return true;
 		} else {
@@ -107,8 +124,9 @@ public class NegocioRestauranteImpl implements INegocioRestaurant {
 		}
 	}
 
-	public Boolean cancelarReserva(final Restaurante restaurante, final Reserva reserva) {
-		if (reserva != null) {
+	public Boolean cancelarReserva(final Reserva reserva) {
+		List<Reserva> lista = reservaDAO.cancelarConLocalizador(reserva);
+		if (!lista.isEmpty()) {
 			reservaDAO.deleteReserva(reserva);
 			return true;
 		} else {

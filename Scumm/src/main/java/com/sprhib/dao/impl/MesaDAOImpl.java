@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sprhib.dao.IMesaDAO;
 import com.sprhib.model.entities.Mesa;
+import com.sprhib.model.entities.Reserva;
 
 
 @Repository
@@ -37,4 +38,10 @@ public class MesaDAOImpl implements IMesaDAO{
 	public List<Mesa> getMesa() {
 		return getCurrentSession().createQuery("from Mesa").list();
 	}
+	
+//	@SuppressWarnings("unchecked")
+//	public List<Mesa> disponibilidadMesa(Mesa mesa) {
+//		Query query = getCurrentSession().createQuery("from Mesa where disponibilidad = '0'");
+//		return query.list();
+//	}
 }

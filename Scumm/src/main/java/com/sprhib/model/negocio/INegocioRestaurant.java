@@ -20,10 +20,13 @@ public interface INegocioRestaurant {
 	void updateTurno(Turno turno);
 	void deleteTurno(Long id);
 	
+	void addMesa(Mesa mesa);
+	void updateMesa(Mesa mesa);
+
 	List<Restaurante> getRestaurantes();
 	List<Reserva> getReservas();
 	List<Turno> getTurnos();
 	List<Mesa> getMesas();
 	Boolean reservar(final Restaurante restaurante, final Reserva reservas);
-	Boolean cancelarReserva(final Restaurante restaurante, final Reserva reserva);
+	Boolean cancelarReserva(final Reserva reserva);
 }

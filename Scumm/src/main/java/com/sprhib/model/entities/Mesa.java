@@ -1,10 +1,13 @@
 package com.sprhib.model.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +21,10 @@ public class Mesa {
 	private Integer numero;
 	@Column(name = "capacidad", nullable = false)
 	private Integer capacidad;
-
+	
+	@OneToMany
+	private List<Reserva> reservas;
+	
 	public Long getId() {
 		return id;
 	}
@@ -42,4 +48,13 @@ public class Mesa {
 	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
 	}
+	
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+	
 }

@@ -28,9 +28,6 @@ public class Restaurante {
 	private String descripcion;
 
 	@OneToMany
-	private List<Reserva> reservas;
-
-	@OneToMany
 	private List<Mesa> mesas;
 
 	public Long getId() {
@@ -63,14 +60,6 @@ public class Restaurante {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public List<Reserva> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
 	}
 
 	public List<Mesa> getMesas() {
