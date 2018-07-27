@@ -27,7 +27,6 @@ public class ReservaDAOImpl implements IReservaDAO {
 		getCurrentSession().save(reserva);
 	}
 
-
 	public void updateReserva(Reserva reserva) {
 		Reserva reservaToUpdate = (Reserva) getCurrentSession().get(Reserva.class, reserva.getId());
 		reservaToUpdate.setDia(reserva.getDia());
@@ -47,11 +46,11 @@ public class ReservaDAOImpl implements IReservaDAO {
 	public List<Reserva> getReserva() {
 		return getCurrentSession().createQuery("from Reserva").list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Reserva> comprobarDiaDeReserva(Long restauranteId, Date diaReserva){
-		Query query=getCurrentSession().createQuery("from Restaurante where restauranteId = :restauranteId");
-		query.setParameter("restauranteId", restauranteId);
+	public List<Reserva> comprobarDiaDeReserva(Long restauranteId, Date diaReserva) {
+		Query query = getCurrentSession().createQuery("from Reserva where restaurante_id = :restaurante_id");
+		query.setParameter("restaurante_id", restauranteId);
 		query.setParameter("diaReserva", diaReserva);
 		return query.list();
 	}
@@ -66,15 +65,16 @@ public class ReservaDAOImpl implements IReservaDAO {
 			return false;
 		}
 	}
-	
-//	Buscar id de mesa
+
 //	@SuppressWarnings("unchecked")
-//	public List<Mesa> cantidadDeMesas(Mesa mesa) {
-//		Query query = getCurrentSession().createQuery("select id from Mesa where idMesa = :id");
+//	public List<Mesa> crearInterrelacionRestauranteMesa(Mesa mesa, Restaurante restaurante) {
+//		Query query = getCurrentSession()
+//				.createQuery("insert into restaurante_mesa from restaurante inner join id on restaurante_mesa.Restaurante_id where restaurante.id=");
 //		query.setParameter("idMesa", mesa.getId());
+//		query.setParameter("idRestaurante", restaurante.getId());
 //		return query.list();
 //	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Reserva> cancelarConLocalizador(Reserva reserva) {
 		Query query = getCurrentSession().createQuery("from Reserva where localizador = :localizador AND dia = :dia");

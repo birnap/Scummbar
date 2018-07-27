@@ -38,10 +38,5 @@ public class MesaDAOImpl implements IMesaDAO{
 	public List<Mesa> getMesa() {
 		return getCurrentSession().createQuery("from Mesa").list();
 	}
-	
-//	@SuppressWarnings("unchecked")
-//	public List<Mesa> disponibilidadMesa(Mesa mesa) {
-//		Query query = getCurrentSession().createQuery("from Mesa where disponibilidad = '0'");
-//		return query.list();
-//	}
+
 }

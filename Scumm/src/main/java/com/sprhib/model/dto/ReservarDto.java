@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.sprhib.model.entities.Mesa;
+import com.sprhib.model.entities.Reserva;
 import com.sprhib.model.entities.Restaurante;
 import com.sprhib.model.entities.Turno;
 
@@ -11,6 +12,7 @@ public class ReservarDto {
 	private List<Restaurante> restaurantes;
 	private List<Turno> turnos;
 	private List<Mesa> mesas;
+	private List<Reserva> reservas;
 
 	private Long restauranteId;
 	private Date dia;
@@ -39,7 +41,7 @@ public class ReservarDto {
 	}
 
 	public void setRestaurantes(List<Restaurante> restaurantes) {
-		this.restaurantes = (List<Restaurante>) restaurantes;
+		this.restaurantes = restaurantes;
 	}
 
 	public List<Turno> getTurnos() {
@@ -48,6 +50,14 @@ public class ReservarDto {
 
 	public void setTurnos(List<Turno> turnos) {
 		this.turnos = turnos;
+	}
+	
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 
 	public Long getRestauranteId() {

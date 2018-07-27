@@ -43,11 +43,10 @@ public class ControladorCancelaciones {
 		restaurante.setId(dto.getRestauranteId());
 
 		boolean result = negocioRestaurante.cancelarReserva(reserva);
+		
 		model.addObject("estado", result);
-		model.addObject("dia",reserva.getDia());
 		model.addObject("localizador", reserva.getLocalizador());
-//		model.addObject("personas", reserva.getPersonas());
-//		model.addObject("restaurante",restaurante.getId());
+		model.addObject("dia",reserva.getDia());
 		return model;
 	}
 }

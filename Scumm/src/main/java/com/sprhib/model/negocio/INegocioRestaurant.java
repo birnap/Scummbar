@@ -2,6 +2,7 @@ package com.sprhib.model.negocio;
 
 import java.util.List;
 
+import com.sprhib.model.dto.ReservarDto;
 import com.sprhib.model.entities.Mesa;
 import com.sprhib.model.entities.Reserva;
 import com.sprhib.model.entities.Restaurante;
@@ -24,9 +25,13 @@ public interface INegocioRestaurant {
 	void updateMesa(Mesa mesa);
 
 	List<Restaurante> getRestaurantes();
+	Restaurante getRestaurante(Long id);
 	List<Reserva> getReservas();
 	List<Turno> getTurnos();
 	List<Mesa> getMesas();
-	Boolean reservar(final Restaurante restaurante, final Reserva reservas);
+	
+	Boolean reservar(final Reserva reservas);
 	Boolean cancelarReserva(final Reserva reserva);
+	void initData();
+	Boolean buscarMesa(ReservarDto dto, Reserva reserva);
 }

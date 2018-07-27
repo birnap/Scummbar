@@ -1,9 +1,12 @@
 package com.sprhib.model.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +30,8 @@ public class Restaurante {
 	@Column(name = "descripcion", nullable = false, length = 500)
 	private String descripcion;
 
-	@OneToMany
-	private List<Mesa> mesas;
+	@OneToMany(fetch= FetchType.EAGER)
+	private List<Mesa> mesas = new ArrayList<Mesa>();
 
 	public Long getId() {
 		return id;
@@ -68,5 +71,17 @@ public class Restaurante {
 
 	public void setMesas(List<Mesa> mesas) {
 		this.mesas = mesas;
+	}
+	
+	public Restaurante(Long id, String nombre, String direccion, String descripcion, List<Mesa> mesas) {
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.descripcion = descripcion;
+		this.mesas = mesas;
+	}
+	
+	public Restaurante() {
+		
 	}
 }

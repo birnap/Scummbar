@@ -1,5 +1,6 @@
 package com.sprhib.model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -56,5 +57,19 @@ public class Mesa {
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
 	}
+	
+	public Mesa (Long id, Integer numero, Integer capacidad, ArrayList<Reserva> listaReservas) {
+		this.id=id;
+		this.numero=numero;
+		this.capacidad=capacidad;
+		this.reservas=listaReservas;
+	}
+	
+	//Inicializacion para coger Mesa vacia.
+	public Mesa() {
+		
+	}
+	
+	
 	
 }

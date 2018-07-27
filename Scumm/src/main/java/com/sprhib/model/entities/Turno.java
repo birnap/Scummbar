@@ -32,5 +32,14 @@ public class Turno {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public Turno(Long id, String descripcion) {
+		this.id=id;
+		this.descripcion=descripcion;
+	}
+	
+	public Turno() {
+		
+	}
 
 }

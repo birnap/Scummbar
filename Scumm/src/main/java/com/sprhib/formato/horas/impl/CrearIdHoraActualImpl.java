@@ -14,10 +14,4 @@ public class CrearIdHoraActualImpl {
 		return simpleDateFormat.format(hora);
 	}
 
-	public Long obtenerIdentificadorMesa() {
-		
-		
-		return (long) 2;
-	}
-
 }
